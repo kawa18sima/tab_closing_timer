@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/timer.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <section v-if="createdTimer">
+        <div class="timer">
+          <h3>
+            {{('0' + Math.floor(time/3600)).slice(-2)}}:
+            {{('0' + Math.floor(time%3600/60)).slice(-2)}}:
+            {{('0' + time%60).slice(-2)}}
+          </h3>
+        </div>
+      </section>
+      <section v-else>
+        <h2>タイマー作成</h2>
+        <form v-on:submit.prevent>
+          <label>
+            <input type="time" step="1" value="00:00:00" v-model="limitString">
+          </label>
+          <button v-on:click="createTimer">作成</button>
+        </form>
+      </section>
+    </div>
+    <script src="js/popup.js"></script>
+  </body>
+</html>
